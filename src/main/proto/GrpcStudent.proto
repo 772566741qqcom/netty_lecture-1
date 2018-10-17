@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package com.example.tutorial.grpc;
+
+option java_package = "com.example.tutorial.grpc";
+option java_outer_classname = "GrpcStudent";
+
+service StudentService{
+	rpc GetRealNameByUserName(MyRequest) returns (MyResponse) {}
+	rpc GetStudentByAge(StudentAge) returns (stream StudentInfo){}
+	rpc GetStudentWrapperByAge(stream StudentAge) returns (StudentResponseList){}
+}
+
+message MyRequest{
+	string username=1;
+}
+
+message MyResponse{
+	string realname=1;
+}
+
+message StudentAge{
+	int32 age=1;
+}
+
+message StudentInfo{
+	string name=1;
+	int32 age=2;
+	string address=3;
+}
+
+message StudentResponseList{
+	repeated StudentInfo studentInfo=1;
+}

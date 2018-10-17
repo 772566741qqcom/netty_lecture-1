@@ -1,0 +1,38 @@
+syntax = "proto2";
+
+package sixthexample;
+
+option java_package = "sixthexample";
+option java_outer_classname = "DataInfo";
+
+message MyMessage{
+	enum DataType{
+		StudentType=1;
+		PersonType=2;
+		TercherType=3;
+	}
+	
+	required DataType data_type=1;
+	oneof dataBody{
+		 Student student=2;
+		 Person person=3;
+		 Teacher teacher=4;
+	}
+}
+
+message Student{
+	optional string name=1;
+	optional int32 age=2;
+	optional string studentNum=3;
+} 
+message Person{
+	optional string name=1;
+	optional int32 age=2;
+	optional string adress=3;
+}
+
+message Teacher{
+	optional string name=1;
+	optional int32 age=2;
+	optional string teacherNum=3;
+}
